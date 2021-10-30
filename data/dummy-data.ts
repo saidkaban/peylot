@@ -24,7 +24,7 @@ export const ITEMS: Item[] = [
     "https://assets.catawiki.nl/assets/2021/9/1/8/d/e/8de163c9-ea11-47ef-bd35-408aa44b3755.jpg"
   ),
   new Item(
-    "i1",
+    "i2",
     ["c1", "c4"],
     "14 kt. Yellow gold - Ring",
     200,
@@ -32,7 +32,7 @@ export const ITEMS: Item[] = [
     "https://assets.catawiki.nl/assets/2021/9/1/8/d/e/8de163c9-ea11-47ef-bd35-408aa44b3755.jpg"
   ),
   new Item(
-    "i2",
+    "i3",
     ["c7", "c10"],
     "Portugal. República. 10 Escudos 1937 - Escassa",
     60,

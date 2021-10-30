@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 interface Props {
@@ -13,7 +13,7 @@ const CategoryGridItem = ({ navigation, itemData }: Props) => {
       onPress={() =>
         navigation.navigate("CategoryItems", {
           categoryTitle: itemData.item.title,
-          categoryId: itemData.item.id
+          categoryId: itemData.item.id,
         })
       }
       style={{ ...styles.gridItem, backgroundColor: itemData.item.color }}
@@ -36,16 +36,16 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     padding: 10,
     height: 160,
-    width: 160,
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
+    width: Dimensions.get('window').width * 0.9,
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
     borderColor: "#ccc",
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 5,
   },
   gridTitle: {
     fontSize: 20,
-    fontFamily: "open-sans-bold",
-    textAlign: "right", 
+    fontFamily: "zen-antique",
+    textAlign: "left",
   },
 });

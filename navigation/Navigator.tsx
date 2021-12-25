@@ -1,16 +1,12 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import CategoriesScreen from "../screens/Categories/CategoriesScreen";
-import CategoryItemsScreen from "../screens/Categories/CategoryItemsScreen";
-import ItemDetailScreen from "../screens/Categories/ItemDetailScreen";
-import { RootStackParamList } from "../types";
 import FavoritesScreen from "../screens/Favorites/FavoritesScreen";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import HomeScreen from "../screens/Home/HomeScreen";
+import ProfileScreen from "../screens/Profile/ProfileScreen";
+import CategoriesStack from "./CategoriesStack";
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
 
 export const MainTabs = () => {
@@ -26,6 +22,8 @@ export const MainTabs = () => {
             iconName = focused ? "ios-list" : "ios-list-outline";
           } else if (route.name === "FavoritesTab") {
             iconName = focused ? "ios-heart" : "ios-heart-outline";
+          } else if (route.name === "ProfileTab") {
+            iconName = focused ? "person" : "person-outline";
           }
 
           // You can return any component that you like here!
@@ -36,47 +34,25 @@ export const MainTabs = () => {
       })}
     >
       <Tab.Screen
-        name='HomeTab'
+        name="HomeTab"
         component={HomeScreen}
-        options={{ title: "Home" }}
+        options={{ title: "Anasayfa" }}
       />
       <Tab.Screen
-        name='CategoriesTab'
+        name="CategoriesTab"
         component={CategoriesStack}
-        options={{ headerShown: false, title: "Categories" }}
+        options={{ headerShown: false, title: "Kategoriler" }}
       />
       <Tab.Screen
-        name='FavoritesTab'
+        name="FavoritesTab"
         component={FavoritesScreen}
-        options={{ title: "Favorites" }}
+        options={{ title: "Favorilerim" }}
+      />
+      <Tab.Screen
+        name="ProfileTab"
+        component={ProfileScreen}
+        options={{ title: "Profil" }}
       />
     </Tab.Navigator>
-  );
-};
-
-export const CategoriesStack = () => {
-  return (
-    <Stack.Navigator
-      initialRouteName='Categories'
-      screenOptions={{
-        headerStyle: { backgroundColor: "white" },
-      }}
-    >
-      <Stack.Screen name='Categories' component={CategoriesScreen} />
-      <Stack.Screen
-        name='CategoryItems'
-        component={CategoryItemsScreen}
-        options={({ route }) => ({
-          title: route.params.categoryTitle,
-        })}
-      />
-      <Stack.Screen
-        name='ItemDetail'
-        component={ItemDetailScreen}
-        options={({ route }) => ({
-          headerTitle: route.params?.itemTitle,
-        })}
-      />
-    </Stack.Navigator>
   );
 };

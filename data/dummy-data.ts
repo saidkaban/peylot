@@ -1,18 +1,27 @@
 import Category from "../models/category";
+import Categories from "../constants/Categories";
 import Item from "../models/item";
 
-export const CATEGORIES = [
-  new Category("c1", "Italian", "#f5428d"),
-  new Category("c2", "Quick & Easy", "#f54242"),
-  new Category("c3", "Hamburgers", "#f5a442"),
-  new Category("c4", "German", "#f5d142"),
-  new Category("c5", "Light & Lovely", "#368dff"),
-  new Category("c6", "Exotic", "#41d95d"),
-  new Category("c7", "Breakfast", "#9eecff"),
-  new Category("c8", "Asian", "#b9ffb0"),
-  new Category("c9", "French", "#ffc7ff"),
-  new Category("c10", "Summer", "#47fced"),
+const colors = [
+  "#f5428d",
+  "#f54242",
+  "#f5a442",
+  "#f5d142",
+  "#368dff",
+  "#41d95d",
+  "#9eecff",
+  "#b9ffb0",
+  "#ffc7ff",
+  "#47fced",
 ];
+
+export const CATEGORIES = Object.keys(Categories).map((ctgKey, idx) => {
+  return new Category(
+    "c" + (idx + 1),
+    Categories[ctgKey as keyof typeof Categories],
+    colors[idx]
+  );
+});
 
 export const ITEMS: Item[] = [
   new Item(

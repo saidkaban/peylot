@@ -1,11 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../types";
+import { CategoriesStackParamList } from "../../types";
 import CategoryGridItem from "../../components/CategoryGridItem";
 import { CATEGORIES } from "../../data/dummy-data";
 
-type Props = NativeStackScreenProps<RootStackParamList, "Categories">;
+type Props = NativeStackScreenProps<CategoriesStackParamList, "Categories">;
 
 const CategoriesScreen = ({ navigation }: Props) => {
   const renderGridItem = (itemData: any) => {

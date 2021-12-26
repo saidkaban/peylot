@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import { MainTabs } from "./navigation/Navigator";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -28,7 +29,9 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <MainTabs />
+      <Provider store={store}>
+        <MainTabs />
+      </Provider>
     </NavigationContainer>
   );
 }

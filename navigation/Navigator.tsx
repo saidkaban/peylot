@@ -1,11 +1,8 @@
-import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import FavoritesScreen from "../screens/Favorites/FavoritesScreen";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
-import HomeScreen from "../screens/Home/HomeScreen";
-import ProfileScreen from "../screens/Profile/ProfileScreen";
 import CategoriesStack from "./CategoriesStack";
+import FavoritesStack from "./FavoritesStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,14 +13,10 @@ export const MainTabs = () => {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: any;
 
-          if (route.name === "HomeTab") {
-            iconName = focused ? "home" : "home-outline";
-          } else if (route.name === "CategoriesTab") {
+          if (route.name === "CategoriesTab") {
             iconName = focused ? "ios-list" : "ios-list-outline";
           } else if (route.name === "FavoritesTab") {
             iconName = focused ? "ios-heart" : "ios-heart-outline";
-          } else if (route.name === "ProfileTab") {
-            iconName = focused ? "person" : "person-outline";
           }
 
           // You can return any component that you like here!
@@ -31,27 +24,20 @@ export const MainTabs = () => {
         },
         tabBarActiveTintColor: Colors.primaryColor,
         tabBarInactiveTintColor: "gray",
+        tabBarShowLabel: false,
+        headerShown: false,
       })}
     >
-      <Tab.Screen
-        name="HomeTab"
-        component={HomeScreen}
-        options={{ title: "Anasayfa" }}
-      />
       <Tab.Screen
         name="CategoriesTab"
         component={CategoriesStack}
         options={{ headerShown: false, title: "Kategoriler" }}
       />
+
       <Tab.Screen
         name="FavoritesTab"
-        component={FavoritesScreen}
+        component={FavoritesStack}
         options={{ title: "Favorilerim" }}
-      />
-      <Tab.Screen
-        name="ProfileTab"
-        component={ProfileScreen}
-        options={{ title: "Profil" }}
       />
     </Tab.Navigator>
   );

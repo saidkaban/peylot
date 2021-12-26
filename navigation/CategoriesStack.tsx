@@ -1,11 +1,10 @@
-import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CategoriesScreen from "../screens/Categories/CategoriesScreen";
 import CategoryItemsScreen from "../screens/Categories/CategoryItemsScreen";
 import ItemDetailScreen from "../screens/Categories/ItemDetailScreen";
-import { RootStackParamList } from "../types";
+import { CategoriesStackParamList } from "../types";
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<CategoriesStackParamList>();
 
 const CategoriesStack = () => {
   return (

@@ -1,6 +1,8 @@
 import React, { useState, useLayoutEffect } from "react";
+import { useAppDispatch } from "../../store/hooks";
 import { Image, StyleSheet, Text, View, Dimensions } from "react-native";
-import { ITEMS } from "../../data/dummy-data";
+import { useAppSelector } from "../../store/hooks";
+import { itemActions } from "../../store/itemsSlice";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -10,17 +12,31 @@ interface Props {
 }
 
 const ItemDetailScreen = ({ route, navigation }: Props) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const dispatch = useAppDispatch();
+  const items = useAppSelector((state) => state.items.items);
 
   const { itemId } = route.params;
-  const selectedItem = ITEMS.find((item) => item.id === itemId);
+  const selectedItem = items.find((item) => item.id === itemId);
+
+  const isFavorite = useAppSelector(
+    (state) =>
+      state.items.favoriteItems.filter((el) => el.id === itemId).length > 0
+  );
+
+  const toggleIsFavorite = () => {
+    if (isFavorite) {
+      dispatch(itemActions.removeFromFavorites(itemId));
+    } else {
+      dispatch(itemActions.addToFavorites(itemId));
+    }
+  };
 
   let favIcon = (
-    <TouchableOpacity onPress={() => setIsFavorite((prev) => !prev)}>
+    <TouchableOpacity onPress={toggleIsFavorite}>
       {isFavorite ? (
-        <Ionicons name='heart-sharp' size={24} color='black' />
+        <Ionicons name="heart-sharp" size={24} color="black" />
       ) : (
-        <Ionicons name='heart-outline' size={24} color='black' />
+        <Ionicons name="heart-outline" size={24} color="black" />
       )}
     </TouchableOpacity>
   );
